@@ -6,6 +6,8 @@ use serenity::model::channel::Message;
 use serenity::framework::standard::macros::{command, group};
 use serenity::framework::standard::{StandardFramework, CommandResult};
 
+//define command names so the framework actually recognizes them lol
+
 #[group]
 #[commands(fuzzy, ccz, kurk, railgun)]
 struct General;
@@ -14,6 +16,9 @@ struct Handler;
 
 #[async_trait]
 impl EventHandler for Handler {}
+
+//i have no idea what this does
+//im gonna let the comments i took from the example projects to do my job for me
 
 #[tokio::main]
 async fn main() {
@@ -29,7 +34,9 @@ async fn main() {
    // `RUST_LOG` to `debug`.
        tracing_subscriber::fmt::init();
 
-    // Login with a bot token from the environment
+
+    //ngl it took longer that it should have for me to realize how serenity checks for the env file
+    //the intents were pretty seamless to impliment though
     let token = env::var("DISCORD_TOKEN").expect("Expected a token in the environment");
     let intents = GatewayIntents::GUILD_MESSAGES
        | GatewayIntents::DIRECT_MESSAGES
@@ -41,6 +48,7 @@ async fn main() {
         .expect("Error creating client");
 
     // start listening for events by starting a single shard
+    //no idea what a shart is but ok bestie kill it
     if let Err(why) = client.start().await {
         println!("An error occurred while running the client: {:?}", why);
     }
